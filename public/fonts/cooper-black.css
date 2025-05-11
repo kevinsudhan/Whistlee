@@ -1,0 +1,9 @@
+/* Cooper Black font */
+@font-face {
+  font-family: 'Cooper Black';
+  src: url('https://db.onlinewebfonts.com/t/00d5a78493aed2542c8a8fb1a87d9e0e.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/00d5a78493aed2542c8a8fb1a87d9e0e.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

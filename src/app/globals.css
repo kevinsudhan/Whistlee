@@ -1,0 +1,338 @@
+@import "tailwindcss";
+
+/* Import Cooper Black font */
+@font-face {
+  font-family: 'Cooper Black';
+  src: url('https://db.onlinewebfonts.com/t/00d5a78493aed2542c8a8fb1a87d9e0e.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/00d5a78493aed2542c8a8fb1a87d9e0e.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #ffffff;
+  --secondary-yellow: #FFD700;
+  --secondary-blue: #0066CC;
+  --accent-yellow-light: #FFF8E1;
+  --accent-blue-light: #E6F2FF;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --font-cooper: 'Cooper Black', serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary: #0a0a0a;
+    --secondary-yellow: #FFD700;
+    --secondary-blue: #4D94FF;
+    --accent-yellow-light: #3A3000;
+    --accent-blue-light: #002B59;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+
+.cooper-font {
+  font-family: var(--font-cooper);
+}
+
+.whistle-gradient-text {
+  background: linear-gradient(90deg, var(--secondary-yellow) 0%, var(--secondary-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.whistle-button-primary {
+  background: linear-gradient(90deg, var(--secondary-yellow) 0%, var(--secondary-blue) 100%);
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-radius: 999px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.whistle-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3), 0 6px 20px rgba(0, 102, 204, 0.3);
+}
+
+.whistle-button-secondary {
+  background: white;
+  border: 1px solid var(--secondary-blue);
+  color: var(--secondary-blue);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-radius: 999px;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.whistle-button-secondary:hover {
+  background: var(--accent-blue-light);
+  transform: translateY(-2px);
+}
+
+/* Glassmorphism styles */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.glass-dark {
+  background: rgba(30, 30, 30, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.03),
+    transparent
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+.glass-dark:hover {
+  background: rgba(40, 40, 40, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Grid background */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  overflow: hidden;
+  z-index: 1;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+.grid-bg::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, transparent 80%);
+  z-index: 0;
+}
+
+.grid-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(0, 102, 204, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
+  z-index: 0;
+}
+
+.grid-line {
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 0.5;
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* Moving elements animations */
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+.animate-move-lr {
+  animation: moveLeftRight 5s ease-in-out infinite;
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-move-ud {
+  animation: moveUpDown 5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate {
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.animate-fade {
+  animation: fadeInOut 8s ease-in-out infinite;
+}
+
+/* Particle animation */
+@keyframes particle-float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, -10px);
+  }
+  50% {
+    transform: translate(20px, 0);
+  }
+  75% {
+    transform: translate(10px, 10px);
+  }
+}
+
+.particle {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.particle-animation {
+  animation: particle-float 15s infinite ease-in-out;
+}
+
+/* For Firefox which doesn't support backdrop-filter */
+@-moz-document url-prefix() {
+  .glass {
+    background: rgba(40, 40, 40, 0.7);
+  }
+  
+  .glass-dark {
+    background: rgba(20, 20, 20, 0.8);
+  }
+}
